@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<InventoryManagementSystem.Models.Product>
+
+@{
+    ViewData["Title"] = "Product List";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">📦 Inventory - Product List</h2>
+
+    <a href="/Product/Create" class="btn btn-primary mb-3">➕ Add New Product</a>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Supplier</th>
+                <th>Added</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductID</td>
+                    <td>@item.ProductName</td>
+                    <td>@item.Category</td>
+                    <td>@item.Quantity</td>
+                    <td>₹@item.Price</td>
+                    <td>@item.Supplier</td>
+                    <td>@item.AddedDate.ToShortDateString()</td>
+                    <td>
+                        <a href="/Product/Edit/@item.ProductID" class="btn btn-sm btn-info me-1">Edit</a>
+                        <a href="/Product/Delete/@item.ProductID" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
